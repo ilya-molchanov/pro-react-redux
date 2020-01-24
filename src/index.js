@@ -9,6 +9,9 @@ const reducer = (state = 0, action) => {
     case 'DEC':
       return state - 1;
 
+    case 'RND':
+      return state + action.payload;
+
     default:
       return state;
   }
@@ -28,6 +31,13 @@ document
     store.dispatch({type: 'DEC'});
   });
 
+document
+  .getElementById('rnd')
+  .addEventListener('click', () => {
+    const payload =  Math.floor(Math.random()*10);
+    store.dispatch({ type: 'RND', payload });
+  });
+
 const update = () => {
   document
     .getElementById('counter')
@@ -35,3 +45,9 @@ const update = () => {
 };
 
 store.subscribe(update);
+
+// console.log(store.getState());
+// store.dispatch({type: 'INC'});
+// store.dispatch({type: 'INC'});
+// store.dispatch({type: 'INC'});
+// console.log(store.getState());
